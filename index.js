@@ -51,29 +51,52 @@
 //     color:"red"
 // });
 
+fetchRandomDog();
 function fetchRandomDog() {
-    xhrRequest = new XMLHttpRequest();
+    // xhrRequest = new XMLHttpRequest();
 
 
-    //one the response is recieved onload function is called
-    xhrRequest.onload = function () {
+    // //one the response is recieved onload function is called
+    // xhrRequest.onload = function () {
         
+    //     //parsing json response
 
-        //parsing json response
+    //     var responseJson = JSON.parse(xhrRequest.response);
 
-        var responseJson = JSON.parse(xhrRequest.response);
+    //     var imageUrl = responseJson.message;
 
-        var imageUrl = responseJson.message;
-
-        $('#dog-image').attr('src',imageUrl);
+    //     $('#dog-image').attr('src',imageUrl);
+    //     $('#dog-image').attr({
+    //         height:"70%",
+    //         width:"70%"
+    //     });
 
         
-    }
+    // }
+    // //true here means asynchronous by default it is asynchronous to make synchronous mention true
+    // //request is initialized
+    // xhrRequest.open('get','https://dog.ceo/api/breeds/image/random',true);
+    // xhrRequest.send() ; // this will made the request  to the sever
 
-    //true here means asynchronous by default it is asynchronous to make synchronous mention true
-    //request is initialized
-    xhrRequest.open('get','https://dog.ceo/api/breeds/image/random',true);
-    xhrRequest.send() ; // this will made the request  to the sever
+    $('#dog-image').attr({
+        height:"70%",
+        width:"70%",
+        alt:"Dog is comming ....."
+    });
+
+    $.ajax(
+        {
+            url:'https://dog.ceo/api/breeds/image/random',
+            method:'get',
+            success:function(data){
+                //data is already in json no need to parse it
+                var imageUrl = data.message;
+
+                $('#dog-image').attr('src',imageUrl);
+
+            }
+        }
+    );
 
 }
 
