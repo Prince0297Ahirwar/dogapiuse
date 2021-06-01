@@ -84,19 +84,24 @@ function fetchRandomDog() {
         alt:"Dog is comming ....."
     });
 
-    $.ajax(
-        {
-            url:'https://dog.ceo/api/breeds/image/random',
-            method:'get',
-            success:function(data){
-                //data is already in json no need to parse it
-                var imageUrl = data.message;
+    // $.ajax(
+    //     {
+    //         url:'https://dog.ceo/api/breeds/image/random',
+    //         method:'get',
+    //         success:function(data){
+    //             //data is already in json no need to parse it
+    //             var imageUrl = data.message;
 
-                $('#dog-image').attr('src',imageUrl);
+    //             $('#dog-image').attr('src',imageUrl);
 
-            }
-        }
-    );
+    //         }
+    //     }
+    // );
+    $.get('https://dog.ceo/api/breeds/image/random',function(data){
+        var imageUrl = data.message;
+
+        $('#dog-image').attr('src',imageUrl);
+    });
 
 }
 
